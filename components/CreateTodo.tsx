@@ -32,7 +32,7 @@ function CreateTodo() {
     }
   return (
     <>
-    <div onClick={onOpen} className=' min-h-80 border rounded-2xl flex justify-center items-center flex-col cursor-pointer' style={{ boxShadow: '10px 10px 0px 0px white'}}>
+    <div onClick={onOpen} className=' bg-black shadow-xl min-h-80 border rounded-2xl flex justify-center items-center flex-col cursor-pointer' >
         <h1 className=' flex items-center justify-center text-4xl gap-4 py-4 w-[90%] border-b border-zinc-600'>Create Todo <Hand size={40} color='orange' /></h1>
         <PlusIcon size={40} color='orange' className=' flex-1' />
     </div>

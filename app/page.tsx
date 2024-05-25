@@ -9,7 +9,7 @@ export default async function Home() {
   const allUsers = await FetchTodo();
 
   return (
-   <main className=" min-h-screen">
+   <main className=" min-h-screen bg-white">
       <Header />
       <div className=" grid grid-cols-4 m-auto gap-10 min-h-screen pt-28 p-10 ">
         <CreateTodo />
@@ -18,7 +18,6 @@ export default async function Home() {
             <Todo key={todo.id} props={todo} />
           ))
         }
-
       </div>
    </main>
   );

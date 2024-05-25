@@ -3,7 +3,7 @@ import React from "react";
 
 function Header() {
   return (
-    <header className=" h-20 flex justify-between items-center px-8 fixed w-full bg-black shadow-md shadow-slate-800">
+    <header className=" h-20 z-10 flex justify-between items-center px-8 fixed w-full bg-black shadow-md">
       <h1 className=" text-4xl font-light flex items-center gap-2 cursor-pointer">
         {" "}
         <Book size={30} color="lightgreen" /> Your Notes
