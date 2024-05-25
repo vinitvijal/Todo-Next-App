@@ -1,13 +1,12 @@
 import { Checkbox } from '@nextui-org/react'
-import { Prisma, Todo as TypeTodo } from '@prisma/client'
+import { Todo as TypeTodo } from '@prisma/client'
 import { Heart } from 'lucide-react'
 import React from 'react'
 
 
 
-
 function Todo(props: { props: TypeTodo }) {
-    const {id, title, content, category, priority, favorite, completed, completedAt, deleted, createdAt} = props.props
+    const { title, content, category, priority, favorite, completed, completedAt, deleted, createdAt} = props.props
 
   return (
     <div className=' h-80 border rounded-xl flex flex-col'>

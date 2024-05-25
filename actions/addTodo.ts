@@ -16,3 +16,9 @@ export default async function addTodo(TodoData: {title: string, content: string,
     })
     return newTodo ? "success" : "failed";
 }
+
+
+export async function FetchTodo() {
+    const allUsers = await prisma.todo.findMany()
+    return allUsers;
+}

@@ -1,14 +1,13 @@
-import Image from "next/image";
-import { Book, Search, SearchIcon } from "lucide-react";
 import Header from "@/components/Header";
 import CreateTodo from '../components/CreateTodo';
 import Todo from "@/components/Todo";
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+import { FetchTodo } from "@/actions/addTodo";
+export const dynamic = 'force-dynamic'
 
 
 export default async function Home() {
-  const allUsers = await prisma.todo.findMany()
+  const allUsers = await FetchTodo();
+
   return (
    <main className=" min-h-screen">
       <Header />

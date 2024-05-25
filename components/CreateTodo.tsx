@@ -27,6 +27,7 @@ function CreateTodo() {
         if (newTodo === "success") {
             toast.success('Todo Created Successfully')
             onOpenChange()
+            
         }
     }
   return (
