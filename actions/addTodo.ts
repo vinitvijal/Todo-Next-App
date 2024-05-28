@@ -17,6 +17,21 @@ export default async function addTodo(TodoData: {title: string, content: string,
     return newTodo ? "success" : "failed";
 }
 
+export async function addNewTodo(TodoData: {userId: string, name: string, description: string, tag: string, status: string}) {
+    const {userId, name, description, tag, status} = TodoData
+
+    const newTodo = await prisma.newTodo.create({
+        data: {
+            userId,
+            name,
+            description,
+            tag,
+            status
+        }
+    })
+    return newTodo ? "success" : "failed";
+}
+
 
 export async function FetchTodo() {
     const allUsers = await prisma.todo.findMany()

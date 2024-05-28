@@ -1,19 +1,27 @@
 
 import { Input } from '@nextui-org/react';
-import { Plus, Search, TimerIcon } from 'lucide-react'
+import { Plus, Search } from 'lucide-react'
 import React from 'react'
 import Timer from './Timer';
 import TaskCol from './TaskCol';
 import { FetchTodoById } from '@/actions/addTodo';
+import { currentUser } from '@clerk/nextjs/server';
+import { RedirectToSignIn } from '@clerk/nextjs';
+import NewTodo from './NewTodo';
 
 async function RightDash() {
-  const todoData = await FetchTodoById('user_2gzZbem9o6pCIZUkR4SwEvKp9Ao')
-  console.log(todoData)
+  const user = await currentUser();
+  console.log(user?.id);
+  if (!user) {
+    return <RedirectToSignIn/>;
+  }
+  const todoData = await FetchTodoById(user?.id);
+  // console.log(todoData)
   return (
-    <section className=' w-5/6 m-h-screen border-l overflow-y-auto'>
+    <section className=' w-5/6 max-h-screen border-l '>
       <Timer />
       <section className=' py-3 w- rounded-md flex justify-between items-center px-5 border-b'>
-        <button className=' text-white text-sm bg-orange-400 flex items-center gap-2 rounded-lg p-2'>New Task <Plus size={20} /></button>
+        <NewTodo  />
         <div className='flex gap-2'>
           <span className='bg-blue-200 px-3 py-2 rounded-3xl text-xs'>Meeting</span>
           <span className='bg-green-200 px-3 py-2 rounded-3xl text-xs'>UI</span>
@@ -35,7 +43,7 @@ async function RightDash() {
           <TaskCol data={todoData.filter((todo) => todo.status === 'start')} nametag={'Task'} />
           <TaskCol data={todoData.filter((todo) => todo.status === 'progress')} nametag={'Progress'} />
           <TaskCol data={todoData.filter((todo) => todo.status === 'completed')} nametag={'Completed'} />
-          <TaskCol data={todoData.filter((todo) => todo.status === 'completed')} nametag={'Overdue'} />
+          <TaskCol data={todoData.filter((todo) => todo.status === 'overdue')} nametag={'Overdue'} />
       </section>
     </section>
   )
