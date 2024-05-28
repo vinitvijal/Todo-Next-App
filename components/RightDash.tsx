@@ -1,13 +1,14 @@
-import { Badge, Button, Input } from '@nextui-org/react';
+
+import { Input } from '@nextui-org/react';
 import { Plus, Search, TimerIcon } from 'lucide-react'
-import React, { useState } from 'react'
+import React from 'react'
 import Timer from './Timer';
 import TaskCol from './TaskCol';
-import tasks from '../public/data.json'
+import { FetchTodoById } from '@/actions/addTodo';
 
-function RightDash() {
-  const data = tasks;
-
+async function RightDash() {
+  const todoData = await FetchTodoById('user_2gzZbem9o6pCIZUkR4SwEvKp9Ao')
+  console.log(todoData)
   return (
     <section className=' w-5/6 m-h-screen border-l overflow-y-auto'>
       <Timer />
@@ -31,10 +32,10 @@ function RightDash() {
         </div>
       </section>
       <section className='  bg-neutral-100 grid grid-cols-4  w-full max-h-full min-h-96 px-1 box-border'>
-          <TaskCol data={data.task} nametag={'Task'} />
-          <TaskCol data={data.progress} nametag={'Progress'} />
-          <TaskCol data={data.completed} nametag={'Completed'} />
-          <TaskCol data={data.completed} nametag={'Overdue'} />
+          <TaskCol data={todoData.filter((todo) => todo.status === 'start')} nametag={'Task'} />
+          <TaskCol data={todoData.filter((todo) => todo.status === 'progress')} nametag={'Progress'} />
+          <TaskCol data={todoData.filter((todo) => todo.status === 'completed')} nametag={'Completed'} />
+          <TaskCol data={todoData.filter((todo) => todo.status === 'completed')} nametag={'Overdue'} />
       </section>
     </section>
   )

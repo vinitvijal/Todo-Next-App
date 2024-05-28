@@ -1,5 +1,5 @@
 'use server'
-import { PrismaClient, Todo} from '@prisma/client'
+import { PrismaClient} from '@prisma/client'
 
 const prisma = new PrismaClient()
 
@@ -21,4 +21,13 @@ export default async function addTodo(TodoData: {title: string, content: string,
 export async function FetchTodo() {
     const allUsers = await prisma.todo.findMany()
     return allUsers;
+}
+
+export async function FetchTodoById(userId: string) {
+    const todo = await prisma.newTodo.findMany({
+        where: {
+            userId: userId
+        }
+    })
+    return todo;
 }

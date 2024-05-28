@@ -26,3 +26,14 @@ model Todo {
   completed Boolean  @default(false)
   deleted   Boolean  @default(false)
 }
+
+model newTodo {
+  userId   String  @db.VarChar(255)
+  todoId   Int     @id @default(autoincrement())
+  name    String  @db.VarChar(255)
+  description String @db.Text
+  created_on DateTime @default(now())
+  updated_on DateTime @default(now())
+  status String @db.VarChar(255)
+  tag String @db.VarChar(255)
+}

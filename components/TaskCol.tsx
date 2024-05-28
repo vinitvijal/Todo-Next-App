@@ -3,8 +3,8 @@ import React from 'react'
 import TodoCard from './TodoCard'
 
 
-function TaskCol({ data, nametag }: { data: object, nametag: string}) {
-    
+function TaskCol({ data, nametag }: { data: Array<object>, nametag: string}) {
+    // console.log(data);
   return (
     <div className=' w-full flex flex-col '>
       <div className=' h-10 bg-white rounded-md m-1 p-2 flex justify-between'>
@@ -14,9 +14,12 @@ function TaskCol({ data, nametag }: { data: object, nametag: string}) {
         </button>
       </div>
       <section className=' overflow-y-auto flex flex-col gap-2 h-[70vh] m-1 '>
-        {Object.entries(data).map(([key, value]) => (
-            <TodoCard key={key} data={value} />
-        ))}
+        {data.map((e, i)=> { 
+            // console.log(e);
+            return(
+            // <TodoCard key={i} data={e} />
+            <TodoCard key={i} data={e}/>
+        )})}
       </section>
     </div>
   )

@@ -7,7 +7,7 @@
         "status":"done",
         "created_at":"2019-01-01 00:00:00",
         "updated_at":"2019-01-01 00:00:00",
-        "tag":"ui"
+        "tag":"ux"
     },
 
     "2": {
@@ -109,7 +109,7 @@
         "status":"progress",
         "created_at":"2019-01-01 00:00:00",
         "updated_at":"2019-01-01 00:00:00",
-        "tag":"dev"
+        "tag":"ux"
     },
     "3":{
         "id":3,

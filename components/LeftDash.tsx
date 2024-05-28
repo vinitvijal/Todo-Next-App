@@ -5,22 +5,27 @@ import {
   SignInButton,
   UserButton,
   useUser,
+  
 } from "@clerk/nextjs";
 import {
   CheckSquare,
   LayoutDashboard,
   ListChecks,
-  MoreHorizontalIcon,
   TimerIcon,
 } from "lucide-react";
 import Link from "next/link";
-
-import React from "react";
+import React, { useEffect } from "react";
 
 function LeftDash() {
   const { user } = useUser();
+  useEffect(() => {
+    if (user) {
+      console.log(user?.id);
+    }
+  },[user]);
+
   return (
-    <section className=" w-1/6  flex flex-col relative">
+    <section  className=" w-1/6  flex flex-col relative">
       <div className=" w-full flex justify-evenly items-center flex-col ">
         <img
           src="/TADA.svg"
