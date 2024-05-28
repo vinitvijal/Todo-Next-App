@@ -18,19 +18,14 @@ import React, { useEffect } from "react";
 
 function LeftDash() {
   const { user } = useUser();
-  useEffect(() => {
-    if (user) {
-      console.log(user?.id);
-    }
-  },[user]);
-
+  
   return (
     <section  className=" w-1/6  flex flex-col relative">
       <div className=" w-full flex justify-evenly items-center flex-col ">
         <img
-          src="/TADA.svg"
+          src="/taskify.svg"
           alt="TADA"
-          className="w-3/4 h-12 mt-4 object-cover"
+          className="w-3/4 h-16  object-cover"
         />
       </div>
       <div className=" flex justify-center flex-col items-center">

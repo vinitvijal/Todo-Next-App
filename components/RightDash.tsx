@@ -17,7 +17,7 @@ async function RightDash() {
   const todoData = await FetchTodoById(user?.id);
 
   return (
-    <section className=' w-5/6 max-h-screen border-l '>
+    <section className=' w-5/6 max-h-screen border-l select-none'>
       <Timer />
       <section className=' py-3 w- rounded-md flex justify-between items-center px-5 border-b'>
         <NewTodo  />
