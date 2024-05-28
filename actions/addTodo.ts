@@ -1,5 +1,5 @@
 'use server'
-import { PrismaClient} from '@prisma/client'
+import { PrismaClient, newTodo as TypeTodo} from '@prisma/client'
 
 const prisma = new PrismaClient()
 
@@ -45,4 +45,18 @@ export async function FetchTodoById(userId: string) {
         }
     })
     return todo;
+}
+
+export async function UpdateDataById(todoId: number, userId: string, tag: string, status: string) {
+    const todo = await prisma.newTodo.update({
+        where: {
+            todoId: todoId,
+            userId: userId
+        },
+        data: {
+            status: status,
+            tag: tag
+        }
+    })
+    return "success";
 }

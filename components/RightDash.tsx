@@ -11,12 +11,11 @@ import NewTodo from './NewTodo';
 
 async function RightDash() {
   const user = await currentUser();
-  console.log(user?.id);
   if (!user) {
     return <RedirectToSignIn/>;
   }
   const todoData = await FetchTodoById(user?.id);
-  // console.log(todoData)
+
   return (
     <section className=' w-5/6 max-h-screen border-l '>
       <Timer />
