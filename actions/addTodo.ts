@@ -60,3 +60,12 @@ export async function UpdateDataById(todoId: number, userId: string, tag: string
     })
     return "success";
 }
+
+export async function DeleteDataById(todoId: number) {
+    const todo = await prisma.newTodo.delete({
+        where: {
+            todoId: todoId
+        }
+    })
+    return "success";
+}

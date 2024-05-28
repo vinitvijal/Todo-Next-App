@@ -16,9 +16,7 @@ function TaskCol({ data, nametag }: { data: Array<TypeTodo>, nametag: string}) {
       </div>
       <section className=' overflow-y-auto flex flex-col gap-2 h-[70vh] m-1 '>
         {data.map((e, i)=> { 
-            console.log(typeof(e));
             return(
-            // <TodoCard key={i} data={e} />
             <TodoCard key={i} data={e}/>
         )})}
       </section>

@@ -1,9 +1,9 @@
 'use client'
-import { BookOpen } from 'lucide-react'
+import { BookOpen, Delete, DeleteIcon } from 'lucide-react'
 import React, { useState } from 'react'
 import { newTodo as TypeTodo } from '@prisma/client'
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, RadioGroup, Radio, Select, SelectItem} from "@nextui-org/react";
-import { UpdateDataById } from '@/actions/addTodo';
+import { DeleteDataById, UpdateDataById } from '@/actions/addTodo';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 
@@ -20,13 +20,24 @@ function TodoCard({data}: { data: TypeTodo }) {
         }
 
         const res = await UpdateDataById(data.todoId, data.userId, tag, status);
-        console.log(res)
         if (res === 'success') {
             toast.success('Todo Updated Successfully')
         }
         else {
             toast.error('An error occured')
         }
+        onOpenChange()
+        router.refresh()
+    }
+
+    async function deleteTodo() {
+        const res = await DeleteDataById(data.todoId)
+        if (res === 'success') {
+            toast.success('Todo Deleted Successfully')
+        }
+        else {
+            toast.error('An error occured')
+        } 
         onOpenChange()
         router.refresh()
     }
@@ -68,6 +79,9 @@ function TodoCard({data}: { data: TypeTodo }) {
                 </div>
               </ModalBody>
               <ModalFooter>
+                <Button color="danger" variant='solid' onPress={deleteTodo}>
+                  Delete
+                </Button>
                 <Button color="danger" variant="light" onPress={onClose}>
                   Close
                 </Button>
