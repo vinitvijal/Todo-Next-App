@@ -6,7 +6,7 @@ import { addNewTodo } from '@/actions/addTodo';
 import { toast } from 'sonner';
 import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
+import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
 import { Label } from './ui/label';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
@@ -114,7 +114,9 @@ function NewTodo(tags: { tags: Array<Tags>}) {
             </div>
           </div>
         <DialogFooter>
-          <Button type="submit" onClick={handleCreateTodo}>Save changes</Button>
+          <DialogClose>
+          <Button type="submit" onClick={handleCreateTodo}>Create Todo</Button>
+          </DialogClose>
         </DialogFooter>
       </DialogContent>
     </Dialog>

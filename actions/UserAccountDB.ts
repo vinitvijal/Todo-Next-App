@@ -2,7 +2,9 @@
 import { PrismaClient} from '@prisma/client'
 import { randomUUID } from 'crypto'
 
-const prisma = new PrismaClient()
+// const prisma = new PrismaClient()
+import prisma from '../db'
+
 
 
 export async function UserExists(userId: string, name: string, email: string) {

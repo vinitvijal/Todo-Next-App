@@ -1,7 +1,8 @@
 'use server'
 import { PrismaClient, newTodo as TypeTodo} from '@prisma/client'
 
-const prisma = new PrismaClient()
+// const prisma = new PrismaClient()
+import prisma from '../db'
 
 export default async function addTodo(TodoData: {title: string, content: string, category: string, priority: number}) {
     const {title, content, category, priority} = TodoData

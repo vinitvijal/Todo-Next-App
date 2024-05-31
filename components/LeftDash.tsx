@@ -16,15 +16,20 @@ import {
   User,
 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
 function LeftDash() {
+  const router = useRouter();
   const { user } = useUser();
   if(user){
-    UserExists(user?.id, user?.fullName || "user" , user?.primaryEmailAddress?.emailAddress || " ").then((res) => {
+    UserExists(user?.id, user?.fullName || "user" , user?.primaryEmailAddress?.emailAddress || " ")
+    .then((res) => {
       console.log(res);
-    });
-  }
+      if(res === "created user"){
+        router.refresh();
+    }
+  })};
   return (
     <section  className=" w-1/6  flex flex-col relative">
       <div className=" w-full flex justify-evenly items-center flex-col ">
