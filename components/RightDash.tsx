@@ -1,4 +1,3 @@
-
 import { Input } from '@nextui-org/react';
 import { Plus, Search } from 'lucide-react'
 import React from 'react'
@@ -8,6 +7,7 @@ import { FetchTodoById } from '@/actions/addTodo';
 import { currentUser } from '@clerk/nextjs/server';
 import { RedirectToSignIn } from '@clerk/nextjs';
 import NewTodo from './NewTodo';
+import { FetchTagsById } from '@/actions/Tags';
 
 async function RightDash() {
   const user = await currentUser();
@@ -15,6 +15,8 @@ async function RightDash() {
     return <RedirectToSignIn/>;
   }
   const todoData = await FetchTodoById(user?.id);
+  const tagsData = await FetchTagsById(user?.id);
+  console.log(tagsData);
 
   return (
     <section className=' w-5/6 max-h-screen border-l select-none'>
@@ -22,10 +24,11 @@ async function RightDash() {
       <section className=' py-3 w- rounded-md flex justify-between items-center px-5 border-b'>
         <NewTodo  />
         <div className='flex gap-2'>
-          <span className='bg-blue-200 px-3 py-2 rounded-3xl text-xs'>Meeting</span>
-          <span className='bg-green-200 px-3 py-2 rounded-3xl text-xs'>UI</span>
-          <span className='bg-yellow-200 px-3 py-2 rounded-3xl text-xs'>UX</span>
-          <span className='bg-red-200 px-3 py-2 rounded-3xl text-xs'>Development</span>
+          {tagsData.map((tag, i) => (
+            <span key={i} className={`${tag.tagColor} px-3 py-2 rounded-3xl text-xs`}>{tag.tagName}</span>
+          ))}
+          
+          <button className='bg-zinc-200 p-2 rounded-full text-xs'><Plus size={15}/></button>
         </div>
         <div className="flex max-w-80 w-60 flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
         <Input

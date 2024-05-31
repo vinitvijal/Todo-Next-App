@@ -1,11 +1,11 @@
-import { Plus, PlusSquare } from 'lucide-react'
+import { PlusSquare } from 'lucide-react'
 import React from 'react'
 import TodoCard from './TodoCard'
 import { newTodo as TypeTodo} from '@prisma/client'
 
 
 function TaskCol({ data, nametag }: { data: Array<TypeTodo>, nametag: string}) {
-    // console.log(data);
+
   return (
     <div className=' w-full flex flex-col '>
       <div className=' h-10 bg-white rounded-md m-1 p-2 flex justify-between'>

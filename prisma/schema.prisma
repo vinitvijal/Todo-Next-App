@@ -37,3 +37,29 @@ model newTodo {
   status String @db.VarChar(255)
   tag String @db.VarChar(255)
 }
+
+model User {
+  userId String @id  @db.VarChar(255)
+  name String @db.VarChar(255)
+  email String @db.VarChar(255)
+}
+
+model Tags {
+  userId String  @db.VarChar(255)
+  tagId String @id  @db.VarChar(255)
+  tagName String @db.VarChar(255)
+  tagColor String @db.VarChar(255)
+  
+
+}
+
+model ListTable {
+  userId String @db.VarChar(255)
+  listId String @id @db.VarChar(255)
+  listName String @db.VarChar(255)
+}
+
+model List {
+  ListId String @id @db.VarChar(255)
+  TodoId Int 
+}

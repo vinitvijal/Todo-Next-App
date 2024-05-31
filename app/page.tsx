@@ -1,13 +1,8 @@
-import Header from "@/components/Header";
-import CreateTodo from '../components/CreateTodo';
-import Todo from "@/components/Todo";
-import { FetchTodo } from "@/actions/addTodo";
 import Link from "next/link";
 export const dynamic = 'force-dynamic'
 
 
 export default async function Home() {
-  const allUsers = await FetchTodo();
 
   return (
    <main className=" min-h-screen bg-zinc-900 relative">
