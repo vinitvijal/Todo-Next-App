@@ -1,10 +1,10 @@
 import { PlusSquare } from 'lucide-react'
 import React from 'react'
 import TodoCard from './TodoCard'
-import { newTodo as TypeTodo} from '@prisma/client'
+import { Tags, newTodo as TypeTodo} from '@prisma/client'
 
 
-function TaskCol({ data, nametag }: { data: Array<TypeTodo>, nametag: string}) {
+function TaskCol({ data, nametag, tags }: { data: Array<TypeTodo>, nametag: string, tags: Array<Tags>}) {
 
   return (
     <div className=' w-full flex flex-col '>
@@ -17,7 +17,7 @@ function TaskCol({ data, nametag }: { data: Array<TypeTodo>, nametag: string}) {
       <section className=' overflow-y-auto flex flex-col gap-2 h-[70vh] m-1 '>
         {data.map((e, i)=> { 
             return(
-            <TodoCard key={i} data={e}/>
+            <TodoCard key={i} data={e} tags={tags}/>
         )})}
       </section>
     </div>

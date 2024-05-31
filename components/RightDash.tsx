@@ -16,13 +16,12 @@ async function RightDash() {
   }
   const todoData = await FetchTodoById(user?.id);
   const tagsData = await FetchTagsById(user?.id);
-  console.log(tagsData);
 
   return (
     <section className=' w-5/6 max-h-screen border-l select-none'>
       <Timer />
       <section className=' py-3 w- rounded-md flex justify-between items-center px-5 border-b'>
-        <NewTodo  />
+        <NewTodo tags={tagsData} />
         <div className='flex gap-2'>
           {tagsData.map((tag, i) => (
             <span key={i} className={`${tag.tagColor} px-3 py-2 rounded-3xl text-xs`}>{tag.tagName}</span>
@@ -42,10 +41,10 @@ async function RightDash() {
         </div>
       </section>
       <section className='  bg-neutral-100 grid grid-cols-4  w-full max-h-full min-h-96 px-1 box-border'>
-          <TaskCol data={todoData.filter((todo) => todo.status === 'start')} nametag={'Task'} />
-          <TaskCol data={todoData.filter((todo) => todo.status === 'progress')} nametag={'Progress'} />
-          <TaskCol data={todoData.filter((todo) => todo.status === 'completed')} nametag={'Completed'} />
-          <TaskCol data={todoData.filter((todo) => todo.status === 'overdue')} nametag={'Overdue'} />
+          <TaskCol tags={tagsData} data={todoData.filter((todo) => todo.status === 'start')} nametag={'Task'} />
+          <TaskCol tags={tagsData} data={todoData.filter((todo) => todo.status === 'progress')} nametag={'Progress'} />
+          <TaskCol tags={tagsData} data={todoData.filter((todo) => todo.status === 'completed')} nametag={'Completed'} />
+          <TaskCol tags={tagsData} data={todoData.filter((todo) => todo.status === 'overdue')} nametag={'Overdue'} />
       </section>
     </section>
   )
