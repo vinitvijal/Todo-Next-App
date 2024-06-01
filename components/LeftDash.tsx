@@ -35,12 +35,17 @@ import { Label } from "@/components/ui/label";
 import { AddNewList, FetchListsById } from "@/actions/Lists";
 import { toast } from "sonner";
 import { ListTable } from '@prisma/client'
+import { usePathname } from 'next/navigation'
+import { cn } from '../lib/utils';
 
 
 function LeftDash({lists}: {lists: ListTable[]}) {
   const router = useRouter();
   const { user } = useUser();
   const [exist, setexist] = useState(false);
+  const path = usePathname();
+  console.log(path)
+
 
   const [listName, setListName] = useState('');
   if (user && !exist) {
@@ -73,7 +78,7 @@ function LeftDash({lists}: {lists: ListTable[]}) {
 };
 
   return (
-    <section className=" w-1/6  flex flex-col relative">
+    <section className=" w-1/6  border-r flex flex-col relative">
       <div className=" w-full flex justify-evenly items-center flex-col ">
         <img
           src="/taskify.svg"
@@ -105,21 +110,21 @@ function LeftDash({lists}: {lists: ListTable[]}) {
           <h1 className=" font-semibold text-zinc-600 p-2">Menu</h1>
           <div className=" flex flex-col  mx-2 gap-2">
             <Link
-              href="#"
-              className=" flex text-sm  text-white bg-orange-400 rounded-lg items-center p-3 gap-2"
+              href="/dashboard"
+              className={cn(path === '/dashboard' ? ' text-white bg-orange-400 rounded-lg' : ' ', " flex text-sm  items-center p-3 gap-2")}
             >
               {" "}
               <LayoutDashboard size={20} /> Overview
             </Link>
-            <Link href="#" className=" flex items-center text-sm p-3 gap-2">
+            <Link href="/dashboard/list"  className={cn(path.startsWith('/dashboard/list') ? ' text-white bg-orange-400 rounded-lg' : ' ', " flex text-sm  items-center p-3 gap-2")}>
               {" "}
               <ListChecks size={20} /> Task List
             </Link>
-            <Link href="#" className=" flex items-center text-sm p-3 gap-2">
+            <Link href="/dashboard/completed" className={cn(path.startsWith('/dashboard/completed') ? ' text-white bg-orange-400 rounded-lg' : ' ', " flex text-sm  items-center p-3 gap-2")}>
               {" "}
               <CheckSquare size={20} /> Completed
             </Link>
-            <Link href="#" className=" flex items-center text-sm p-3 gap-2">
+            <Link href="/dashboard/progress" className={cn(path.startsWith('/dashboard/progress') ? ' text-white bg-orange-400 rounded-lg' : ' ', " flex text-sm  items-center p-3 gap-2")}>
               {" "}
               <TimerIcon size={20} /> In Progess
             </Link>
@@ -164,7 +169,7 @@ function LeftDash({lists}: {lists: ListTable[]}) {
             {lists &&
               lists.toReversed().map((e, i) => {
                 return (
-                  <Link key={i} href="/bhjb" className=" flex items-center p-3 gap-2">
+                  <Link key={i} href={`/dashboard/list/${e.listId}`} className=" flex items-center p-3 gap-2">
                     {" "}
                     {e.listName}
                   </Link>

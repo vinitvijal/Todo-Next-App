@@ -5,19 +5,10 @@ import { RedirectToSignIn } from '@clerk/nextjs';
 import { currentUser } from '@clerk/nextjs/server';
 import React from 'react'
 
-async function page() {
-  const user = await currentUser();
-  if (!user) {
-    return <RedirectToSignIn/>;
-  }
-  const lists = await FetchListsById(user?.id);
-  console.log(lists)
+function page() {
 
   return (
-    <main className=' h-screen w-full flex bg-white text-black fixed'>
-        <LeftDash  lists={lists} />
         <RightDash />
-    </main>
   )
 }
 
