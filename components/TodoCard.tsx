@@ -1,5 +1,5 @@
 "use client";
-import { BookOpen, Delete, DeleteIcon } from "lucide-react";
+import { BookOpen } from "lucide-react";
 import React, { useState } from "react";
 import { Tags, newTodo as TypeTodo } from "@prisma/client";
 import { DeleteDataById, UpdateDataById } from "@/actions/addTodo";

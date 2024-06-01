@@ -55,6 +55,14 @@ export async function UserExists(userId: string, name: string, email: string) {
             }
         ]
         })
+
+        await prisma.listTable.create({
+            data: {
+                userId: userId,
+                listId: randomUUID().toString(),
+                listName: "✌️ Personal"
+            }
+        })
         return "created user"
     }
 
